@@ -28,7 +28,7 @@ export async function loginWithExternalAPI(credentials: LoginCredentials): Promi
         }
 
         throw new Error("Failed to login")
-    } catch (error) {
+    } catch () {
         throw new Error("Failed to login")
     }
 }
@@ -39,8 +39,7 @@ export async function refreshAccessToken(token: any) {
         if (!res.success) return null
         const { accessToken, expiresIn } = res.data
         return { ...token, accessToken: accessToken, accessTokenExpiresAt: Date.now() + expiresIn }
-    } catch (error) {
-        console.error(error)
+    } catch () {
         return null
     }
 }
